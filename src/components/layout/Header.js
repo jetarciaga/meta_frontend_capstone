@@ -9,13 +9,13 @@ import pages from "../../utils/pages";
 const navLinks = Array.from(pages.values()).filter((page) => page.anchorable);
 
 const Header = () => {
-  const { pathName } = useLocation();
+  const { pathname } = useLocation();
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
     <header>
       <nav className="container grid nav-bar">
-        <Link className="nav-bar-logo" to={pages.get("home")}>
+        <Link className="nav-bar-logo" to={pages.get("home").path}>
           <img src={logoImage} alt="Little Lemon logo" />
         </Link>
         <button
@@ -36,7 +36,7 @@ const Header = () => {
           {navLinks.map((navLink, index) => (
             <li key={index}>
               <Link
-                clasName={pathName === navLink.path ? "current-location" : ""}
+                className={pathname === navLink.path ? "current-location" : ""}
                 to={navLink.path}
               >
                 {navLink.name}
